@@ -1,0 +1,57 @@
+# 1. soru
+metin=input("lutfen bir metin giriniz:   ")
+print(metin.upper())
+
+
+# 2. soru
+
+kucuk_harf=0
+buyuk_harf=0
+sayi=0
+karakter=0
+kelime=input("lutfen bir kelime giriniz:")
+for i in kelime:  # degiskenleri tek tek kontrol ediyorz.
+    if i.isupper(): # eger buyuk harf ise
+        buyuk_harf+=1
+    elif i.islower(): # eger kucuk harf ise
+        kucuk_harf+=1
+    elif i.isnumeric(): # eger sayi ise
+        sayi+=1
+    else: # burumlar saglanmiyor ise
+        karakter+=1
+
+print("'{}' degerinde \n{} tane buyuk harf, \n{} tane kucuk harf, \n{} tane sayi, \n{} tane karakter vardir.".format(kelime,buyuk_harf,kucuk_harf,sayi,karakter))
+
+
+# 3. soru
+toplam=0
+giris=input("rakamli giris yapin:")
+for i in giris:  # tek tek kontrol ediyrz
+    if i.isnumeric(): # sayi var ise
+        toplam+=int(i)  # toplami sayiya cevirip topla
+print("{} degerindeki rakamlarin toplami: {}".format(giris,toplam))# islem bitimi sonucu print yaptk
+
+
+# 4. soru
+with open("futbolcular.txt") as file: # dosya acildi
+    liste=file.readlines() # degerleri listeledik
+sesli_harfler="AaEeIiOoUu" # sesli harfleri degskn aldik
+for i in liste: # listedekileri kontrol amacli for dongusune aldik
+    for a in sesli_harfler: # sesli hafleri teker teker kontrol
+        if i.startswith(a):
+            print(i)
+            with open("seslifutbolcular.txt","a") as dosya:
+                dosya.write(i)
+
+
+# 5. soru
+with open("futbolcular.txt") as file:  # dosyayi actik
+    futbolcular=file.read()  #dosya degerlerini strıng seklınde degıskene attık
+  
+kaynak="şçöğüiŞÇÖĞÜİ"  
+hedef="scoguiSCOGUI"
+tablo=str.maketrans(kaynak,hedef)  # ceviri tablosu olusturduk str.maketrans metodu ile
+
+with open("futbolcularyeni.txt","w") as file:  # dosyayi actik
+    file.write(futbolcular.translate(tablo)) #cevirdigimiz stringi yeni dosyaya kaydettik 
+# not bu soru full kopya icerir...:)))
